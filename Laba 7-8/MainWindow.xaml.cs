@@ -21,20 +21,19 @@ using System.Windows.Navigation;
 using System.Windows.Resources;
 using System.Windows.Shapes;
 
-namespace Laba_7
+namespace Laba_7_8
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        static BindingList<Task> list;
-        static BindingList<Task> searchResultList;
+        static BindingList<Task> list = new BindingList<Task>();
+        static BindingList<Task> searchResultList = new BindingList<Task>();
 
         public MainWindow()
         {
             InitializeComponent();
-            list = new BindingList<Task>();
             table.ItemsSource = list;
 
             // Loading cursor
@@ -254,7 +253,9 @@ namespace Laba_7
 
         private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (tbSearchBox.Text == "")
+            TextBox temp = (TextBox)sender;
+
+            if (temp.Text == "")
             {
                 table.ItemsSource = list;
                 searchResultList.Clear();
@@ -262,7 +263,7 @@ namespace Laba_7
             else
             {
                 searchResultList = new BindingList<Task>();
-                Regex regex = new Regex($@"(\w*){tbSearchBox.Text}(\w*)", RegexOptions.IgnoreCase);
+                Regex regex = new Regex($@"(\w*){temp.Text}(\w*)", RegexOptions.IgnoreCase);
                 foreach (Task t in list)
                 {
                     Match m = regex.Match($"{t.Name} {t.Description} {t.Start} {t.End}");

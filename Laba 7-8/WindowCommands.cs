@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Laba_7
+namespace Laba_7_8
 {
     class WindowCommands
     {

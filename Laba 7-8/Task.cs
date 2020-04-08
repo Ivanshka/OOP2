@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace Laba_7
+namespace Laba_7_8
 {
     /// <summary>
     /// Приоритет задачи.
