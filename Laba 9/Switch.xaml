@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="Laba_9.Switch"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Laba_9"
+             mc:Ignorable="d"
+             MaxWidth="100"
+             MaxHeight="25"
+             x:Name="control">
+    <UserControl.Resources>
+        <Style TargetType="Button" >
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Style.Triggers>
+                <Trigger Property="Control.IsFocused" Value="True">
+                    <Setter Property="Control.Foreground" Value="DarkRed" />
+                </Trigger>
+                <Trigger Property="Control.IsMouseOver" Value="True">
+                    <Setter Property="Control.FontWeight" Value="Bold" />
+                    <Setter Property="BorderBrush" Value="Gray" />
+                </Trigger>
+                <Trigger Property="Button.IsPressed" Value="True">
+                    <Setter Property="Control.Background" Value="#00A0FF" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid Width="100" Height="25" Background="Gray">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="75*"/>
+            <ColumnDefinition Width="25*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="button" Click="Button_Click" Content="ВКЛ"/>
+        <Border Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
+            <Ellipse x:Name="ellipse" Fill="Red" Width="20" Height="20"/>
+        </Border>
+    </Grid>
+</UserControl>

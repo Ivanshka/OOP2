@@ -15,7 +15,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Laba 5", "Laba 5\Laba 5.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Laba 6", "Laba 6\Laba 6.csproj", "{B8ED9FA3-087C-4B8D-8876-365A4B8D3749}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Laba 7-8", "Laba 7-8\Laba 7-8.csproj", "{C0CC4EA0-BAE1-4865-A96D-E22239E0D53A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Laba 7-8 (без стилей)", "Laba 7-8\Laba 7-8 (без стилей).csproj", "{C0CC4EA0-BAE1-4865-A96D-E22239E0D53A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Laba 9", "Laba 9\Laba 9.csproj", "{223E5283-CB00-4BDA-9441-8F686E3BEF62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{C0CC4EA0-BAE1-4865-A96D-E22239E0D53A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0CC4EA0-BAE1-4865-A96D-E22239E0D53A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0CC4EA0-BAE1-4865-A96D-E22239E0D53A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{223E5283-CB00-4BDA-9441-8F686E3BEF62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{223E5283-CB00-4BDA-9441-8F686E3BEF62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{223E5283-CB00-4BDA-9441-8F686E3BEF62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{223E5283-CB00-4BDA-9441-8F686E3BEF62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

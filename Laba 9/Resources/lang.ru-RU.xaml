@@ -1,0 +1,48 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Laba_9"
+                    xmlns:v="clr-namespace:System;assembly=mscorlib">
+    <!-- Buttons & labels -->
+    <v:String x:Key="ProgramTitle">Планировщик задач</v:String>
+    <v:String x:Key="Add">Добавить</v:String>
+    <v:String x:Key="Change">Изменить</v:String>
+    <v:String x:Key="Remove">Удалить</v:String>
+    <v:String x:Key="Name">Название</v:String>
+    <v:String x:Key="Description">Описание</v:String>
+    <v:String x:Key="StartDate">Ната начала</v:String>
+    <v:String x:Key="EndDate">Дата окончания</v:String>
+    <v:String x:Key="Periodicity">Периодичность</v:String>
+    <v:String x:Key="Priority">Приоритет</v:String>
+    <v:String x:Key="Category">Категория</v:String>
+    <v:String x:Key="Search">Поиск...</v:String>
+    <!-- DataGrid. This shit doesn't want to use values, which has been used earlier -->
+    <v:String x:Key="TableName">Название</v:String>
+    <v:String x:Key="TableDescription">Описание</v:String>
+    <v:String x:Key="TableStartDate">Ната начала</v:String>
+    <v:String x:Key="TableEndDate">Дата окончания</v:String>
+    <v:String x:Key="TablePeriodicity">Периодичность</v:String>
+    <v:String x:Key="TablePriority">Приоритет</v:String>
+    <v:String x:Key="TableCategory">Категория</v:String>
+    <!-- Menu -->
+    <v:String x:Key="File">Файл</v:String>
+    <v:String x:Key="New">Новый</v:String>
+    <v:String x:Key="Open">Открыть</v:String>
+    <v:String x:Key="SaveAs">Сохранить как...</v:String>
+    <v:String x:Key="Sort">Сортировка</v:String>
+    <v:String x:Key="Language">Язык</v:String>
+    <!-- Message for showing when user changes language -->
+    <v:String x:Key="LangChangingMessage">Если вы ХОТИТЕ завершить смену языка, пожалуйста, перезапустите приложение.</v:String>
+    <v:String x:Key="Warning">Внимание</v:String>
+    <!-- Priority list -->
+    <v:String x:Key="HighPriority">Высокий</v:String>
+    <v:String x:Key="MiddlePriority">Средний</v:String>
+    <v:String x:Key="LowPriority">Низкий</v:String>
+    <!-- Periodicity list -->
+    <v:String x:Key="SinglePeriodicity">Однократно</v:String>
+    <v:String x:Key="DailyPeriodicity">Ежедневно</v:String>
+    <v:String x:Key="WeeklyPeriodicity">Еженедельно</v:String>
+    <v:String x:Key="MonthlyPeriodicity">Ежемесячно</v:String>
+    <v:String x:Key="AnnualPeriodicity">Ежегодно</v:String>
+    <!-- Other messages -->
+    <v:String x:Key="NoMinimalData">Нет минимальных данных. Проверьте поля! Минимальные данные: название и дата начала.</v:String>
+</ResourceDictionary>
