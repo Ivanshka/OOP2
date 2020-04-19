@@ -20,7 +20,33 @@ namespace Laba_9
     /// </summary>
     public partial class Switch : UserControl
     {
+        /*public static new readonly DependencyProperty BackgroundProperty;
+        public new Color Background
+        {
+            get
+            {
+
+                return (Color)GetValue(BackgroundProperty);
+
+            }
+            set
+            {
+                SetValue(BackgroundProperty, value);
+            }
+        }*/
+
         bool enabled = false;
+
+        /// <summary>
+        /// Событие, возникающее при переключении выключателя.
+        /// </summary>
+        public event SwitchClickedDelegate SwitchClicked;
+        public delegate void SwitchClickedDelegate(bool Enabled);
+
+        static Switch()
+        {
+            //BackgroundProperty = DependencyProperty.Register("Background", typeof(Color), typeof(Switch), new PropertyMetadata(Colors.Gray));
+        }
 
         public Switch()
         {
@@ -29,19 +55,19 @@ namespace Laba_9
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            SwitchClicked?.Invoke(enabled);
+
             if (!enabled)
             {
                 button.Content = "ВЫКЛ";
                 ellipse.Fill = new SolidColorBrush(Colors.Lime);
                 enabled = !enabled;
-                App.DarkTheme = true;
             }
             else
             {
                 button.Content = "ВКЛ";
                 ellipse.Fill = new SolidColorBrush(Colors.Red);
                 enabled = !enabled;
-                App.DarkTheme = false;
             }
         }
     }

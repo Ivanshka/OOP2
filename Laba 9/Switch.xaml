@@ -26,8 +26,8 @@
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
-    
-    <Grid Width="100" Height="25" Background="Gray">
+
+    <Grid Width="100" Height="25" Background="{Binding Control.Background, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>

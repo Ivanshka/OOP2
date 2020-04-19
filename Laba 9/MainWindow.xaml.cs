@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
@@ -28,8 +29,21 @@ namespace Laba_9
     /// </summary>
     public partial class MainWindow : Window
     {
-        static BindingList<Task> list = new BindingList<Task>();
+        /// <summary>
+        /// Главный список задач
+        /// </summary>
+        public static ObservableCollection<Task> list { get; set; } = new ObservableCollection<Task>();
+        
+        /// <summary>
+        /// Временный список задач, сделан для поиска
+        /// </summary>
         static BindingList<Task> searchResultList = new BindingList<Task>();
+
+        /// <summary>
+        /// Список выполненных команд
+        /// </summary>
+        static List<ICommand> Actions = new List<ICommand>();
+        int ActionIterator = -1; // при первой команде будет 0, как и индекс в списке
 
         public MainWindow()
         {
@@ -67,6 +81,15 @@ namespace Laba_9
             }
         }
 
+        // === REDO / UNDO SUPPORT ===
+        private void AddToHistory(ICommand command)
+        {
+            ActionIterator++;
+            if (ActionIterator < Actions.Count - 1)
+                Actions.RemoveRange(ActionIterator, Actions.Count - (ActionIterator));
+            Actions.Add(command);
+        }
+
         // === MULTILANGUAGE SUPPORT ===
 
         private void LanguageChanged(object sender, EventArgs e)
@@ -98,7 +121,8 @@ namespace Laba_9
         }
 
         // === COMMANDS HANDLERS ===
-        private void Add_Executed(object sender, ExecutedRoutedEventArgs e){
+        private void Add_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
             Task t = new Task()
             {
                 Category = tbCategory.Text,
@@ -135,12 +159,20 @@ namespace Laba_9
             }
 
             list.Add(t);
+            table.ItemsSource = list; // без него не отображает изменения, хз как исправить
+
+            AddToHistory(new AddTask(list.Count - 1, t));
         }
 
         private void Remove_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             if (table.SelectedItem != null)
+            {
+                AddToHistory(new RemoveTask(table.SelectedIndex, list[table.SelectedIndex]));
+
                 list.RemoveAt(table.SelectedIndex);
+                table.ItemsSource = list;
+            }
         }
 
         private void Change_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -183,10 +215,17 @@ namespace Laba_9
                 default: t.Periodicity = (string)FindResource("SinglePeriodicity"); break;
             }
 
+            AddToHistory(new ChangeTask(table.SelectedIndex, list[table.SelectedIndex], t));
+
             list[table.SelectedIndex] = t;
         }
-        
-        private void New_Executed(object sender, ExecutedRoutedEventArgs e) => list.Clear();
+
+        private void New_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            list.Clear();
+            Actions.Clear();
+            ActionIterator = -1;
+        }
 
         private void Open_Executed(object sender, ExecutedRoutedEventArgs e)
         {
@@ -196,9 +235,9 @@ namespace Laba_9
             if (answer.Value == false)
                 return;
 
-            DataContractJsonSerializer json = new DataContractJsonSerializer(typeof(BindingList<Task>));
+            DataContractJsonSerializer json = new DataContractJsonSerializer(typeof(ObservableCollection<Task>));
             using (FileStream fs = new FileStream(openFileDialog.FileName, FileMode.Open))
-                list = (BindingList<Task>)json.ReadObject(fs);
+                list = (ObservableCollection<Task>)json.ReadObject(fs);
 
             // adding info for current localization
             for (int i = 0; i < list.Count; i++)
@@ -223,6 +262,8 @@ namespace Laba_9
             }
 
             table.ItemsSource = list;
+            Actions.Clear();
+            ActionIterator = -1;
         }
 
         private void SaveAs_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -234,7 +275,7 @@ namespace Laba_9
                 return;
 
             MessageBox.Show(saveFileDialog.FileName);
-            DataContractJsonSerializer json = new DataContractJsonSerializer(typeof(BindingList<Task>));
+            DataContractJsonSerializer json = new DataContractJsonSerializer(typeof(ObservableCollection<Task>));
             using (FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.Create))
                 json.WriteObject(fs, list);
         }
@@ -242,14 +283,34 @@ namespace Laba_9
         private void Sort_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             if (e.Command == WindowCommands.SortName)
-                list = new BindingList<Task>((from l in list orderby l.Name select l).ToList());
+                list = new ObservableCollection<Task>((from l in list orderby l.Name select l).ToList());
             else if (e.Command == WindowCommands.SortDescr)
-                list = new BindingList<Task>((from l in list orderby l.Description select l).ToList());
+                list = new ObservableCollection<Task>((from l in list orderby l.Description select l).ToList());
             else if (e.Command == WindowCommands.SortCategory)
-                list = new BindingList<Task>((from l in list orderby l.Category select l).ToList());
+                list = new ObservableCollection<Task>((from l in list orderby l.Category select l).ToList());
             
             table.ItemsSource = list; // without it he doesn't update table(
         }
+
+        private void Undo_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (ActionIterator > -1)
+            {
+                Actions[ActionIterator].Undo();
+                ActionIterator--;
+            }
+        }
+
+        private void Redo_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (ActionIterator < Actions.Count-1)
+            {
+                ActionIterator++;
+                Actions[ActionIterator].Action();
+            }
+        }
+
+        // OTHER HANDLERS
 
         private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -286,6 +347,12 @@ namespace Laba_9
             cbPeriodicity.SelectedIndex = (int)list[table.SelectedIndex].PeriodicityIndex;
             cbPriority.SelectedIndex = (int)list[table.SelectedIndex].PriorityIndex;
             dpStartDate.SelectedDate = list[table.SelectedIndex].Start;
+        }
+
+        private void Switch_SwitchClicked(bool Enabled)
+        {
+            App.DarkTheme = !App.DarkTheme;
+            MessageBox.Show("Тема изменена!");
         }
     }
 }

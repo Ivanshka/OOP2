@@ -168,7 +168,7 @@
         </Menu>
         <TextBox x:Name="tbSearchBox" Height="23" Margin="0,376,10,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="SearchBox_TextChanged" HorizontalAlignment="Right" Width="170" TabIndex="11"/>
         <Label Content="{DynamicResource Search}" HorizontalAlignment="Right" Margin="0,373,185,0" VerticalAlignment="Top" Width="105"/>
-        <ToolBar HorizontalAlignment="Left" Height="25" Margin="0,18,0,0" VerticalAlignment="Top" Width="309">
+        <ToolBar HorizontalAlignment="Left" Height="25" Margin="0,18,0,0" VerticalAlignment="Top" Width="347">
             <Button Command="New">
                 <Button.CommandBindings>
                     <CommandBinding Command="ApplicationCommands.New" Executed="New_Executed"/>
@@ -188,8 +188,21 @@
                 <Image Source="Resources\SaveAs.ico" />
             </Button>
             <Separator/>
+            <Button x:Name="UndoButton" Command="local:WindowCommands.Undo">
+                <Button.CommandBindings>
+                    <CommandBinding Command="local:WindowCommands.Undo" Executed="Undo_Executed"/>
+                </Button.CommandBindings>
+                <Image Source="Resources\Undo.png" />
+            </Button>
+            <Button x:Name="RedoButton" Command="local:WindowCommands.Redo">
+                <Button.CommandBindings>
+                    <CommandBinding Command="local:WindowCommands.Redo" Executed="Redo_Executed"/>
+                </Button.CommandBindings>
+                <Image Source="Resources\Redo.png" />
+            </Button>
+            <Separator/>
             <TextBox x:Name="toolSearchBox" TextChanged="SearchBox_TextChanged" Text="{DynamicResource Search}" Margin="0" Width="213"/>
         </ToolBar>
-        <local:Switch Width="100" Height="25" Margin="0,404,190,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+        <local:Switch Control.Background="LightGray" SwitchClicked="Switch_SwitchClicked" Width="100" Height="25" Margin="0,404,190,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
     </Grid>
 </Window>

@@ -118,9 +118,6 @@ namespace Laba_9
 
 				//1. Меняем тему:
 				darkTheme = value;
-
-				//4. Вызываем евент для оповещения всех окон.
-				LanguageChanged(Application.Current, new EventArgs());
 			}
 		}
 	}
