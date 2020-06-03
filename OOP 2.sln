@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Laba 10", "Laba 10\Laba 10.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Laba 11", "Laba 11\Laba 11.csproj", "{20B97827-6AF5-4632-B45D-760CF40488B5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Laba 12", "Laba 12\Laba 12.csproj", "{9E29C9E1-B811-4CBC-B4D0-58762B927059}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Laba 13", "Laba 13\Laba 13.csproj", "{04CA5733-A5E5-46DA-AB5A-0F790276B33C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,6 +115,22 @@ Global
 		{20B97827-6AF5-4632-B45D-760CF40488B5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{20B97827-6AF5-4632-B45D-760CF40488B5}.Release|x86.ActiveCfg = Release|x86
 		{20B97827-6AF5-4632-B45D-760CF40488B5}.Release|x86.Build.0 = Release|x86
+		{9E29C9E1-B811-4CBC-B4D0-58762B927059}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E29C9E1-B811-4CBC-B4D0-58762B927059}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E29C9E1-B811-4CBC-B4D0-58762B927059}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9E29C9E1-B811-4CBC-B4D0-58762B927059}.Debug|x86.Build.0 = Debug|Any CPU
+		{9E29C9E1-B811-4CBC-B4D0-58762B927059}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E29C9E1-B811-4CBC-B4D0-58762B927059}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E29C9E1-B811-4CBC-B4D0-58762B927059}.Release|x86.ActiveCfg = Release|Any CPU
+		{9E29C9E1-B811-4CBC-B4D0-58762B927059}.Release|x86.Build.0 = Release|Any CPU
+		{04CA5733-A5E5-46DA-AB5A-0F790276B33C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04CA5733-A5E5-46DA-AB5A-0F790276B33C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04CA5733-A5E5-46DA-AB5A-0F790276B33C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{04CA5733-A5E5-46DA-AB5A-0F790276B33C}.Debug|x86.Build.0 = Debug|Any CPU
+		{04CA5733-A5E5-46DA-AB5A-0F790276B33C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04CA5733-A5E5-46DA-AB5A-0F790276B33C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04CA5733-A5E5-46DA-AB5A-0F790276B33C}.Release|x86.ActiveCfg = Release|Any CPU
+		{04CA5733-A5E5-46DA-AB5A-0F790276B33C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
