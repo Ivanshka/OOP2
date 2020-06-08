@@ -14,12 +14,7 @@ namespace Laba_14
             {
                 InitializeComponent();
             }
-            catch(Exception e) { MessageBox.Show("При инициализации произошла критическая ошибка! Приложение будет закрыто.\nПодробности:\n" + e.Message, "Критическая ошибка инициализации!", MessageBoxButton.OK, MessageBoxImage.Stop); Application.Current.Shutdown(); }
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            (DataContext as MainViewModel).AddCommand.Execute(null);
+            catch(Exception e) { MessageBox.Show("При инициализации окна произошла критическая ошибка! Приложение будет закрыто.\nПодробности:\n" + e.Message, "Критическая ошибка инициализации!", MessageBoxButton.OK, MessageBoxImage.Stop); Application.Current.Shutdown(); }
         }
     }
 }

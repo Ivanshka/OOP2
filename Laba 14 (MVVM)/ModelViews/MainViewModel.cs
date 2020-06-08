@@ -1,6 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data.Entity;
 using System.Runtime.CompilerServices;
+using System.Windows;
 
 namespace Laba_14
 {
@@ -9,9 +12,30 @@ namespace Laba_14
     /// </summary>
     public class MainViewModel : INotifyPropertyChanged
     {
+        DatabaseContext dbContext;
         private Record selectedRecord;
 
-        public ObservableCollection<Record> Records { get; set; } = new ObservableCollection<Record>(new System.Collections.Generic.List<Record>() { new Record() { Date = System.DateTime.Now, IntervalEndTime = "15:25", IntervalStartTime= "13:50", Name = "ФИО", Subject = "Предмет" }, new Record() { Date = System.DateTime.Now, IntervalEndTime = "15:25", IntervalStartTime = "13:50", Name = "ФИО", Subject = "Предмет" } });
+        public MainViewModel()
+        {
+            // инициализация команд
+            AddCommand = new RelayCommand((a) => Add());
+            RemoveCommand = new RelayCommand((a) => Remove());
+            SaveCommand = new RelayCommand((a) => Save());
+
+            // скачивание данных из БД
+            InfoBox info = new InfoBox("Подключение к базе данных...", 200, 50, true);
+            info.Show();
+            try
+            {
+                dbContext = new DatabaseContext();
+                dbContext.Records.Load();
+            }
+            catch (Exception e) { MessageBox.Show("Произошла критическая ошибка. Приложение будет закрыто.\nПодробнее:\n" + e.Message, "Критическая ошибка", MessageBoxButton.OK, MessageBoxImage.Stop); info.Close(); Application.Current.Shutdown(); }
+            info.Close();
+            Records = dbContext.Records.Local;
+        }
+
+        public ObservableCollection<Record> Records { get; set; }
         public Record SelectedRecord
         {
             get { return selectedRecord; }
@@ -24,23 +48,30 @@ namespace Laba_14
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "") => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-
-        public MainViewModel()
-        {
-            AddCommand = new RelayCommand((a) => Add());
-            RemoveCommand = new RelayCommand((a) => Remove());
-        }
-
+        
         // команды
-        public RelayCommand AddCommand { get; set; }
-        public RelayCommand RemoveCommand { get; set; }
+        public RelayCommand AddCommand { get; }
+        public RelayCommand RemoveCommand { get; }
+        public RelayCommand SaveCommand { get; }
 
         void Add()
         {
-            Record r = new Record();
-            Records.Insert(0, r);
-            SelectedRecord = r;
+            dbContext.Records.Add(new Record() { Date = DateTime.Now });
+            SelectedRecord = Records[0];
+            Save();
         }
-        private void Remove() => Records.Remove(SelectedRecord);
+        private void Remove()
+        {
+            dbContext.Records.Remove(SelectedRecord);
+            Save();
+        }
+        void Save()
+        {
+            try
+            {
+                dbContext.SaveChanges();
+            }
+            catch (Exception e) { MessageBox.Show("Не удалось завершить операцию!\nПодробности:\n" + e.Message, "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error); }
+        }
     }
 }

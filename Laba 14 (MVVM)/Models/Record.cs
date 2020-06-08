@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
 
 namespace Laba_14
@@ -17,6 +18,8 @@ namespace Laba_14
         string intervalEndTime;
 
         // свойства
+        [Key] // первичный ключ таблицы
+        public int ID { get; set; }
         public string Name
         {
             get {return name;}

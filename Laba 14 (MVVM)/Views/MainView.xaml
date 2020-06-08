@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Laba_14"
         mc:Ignorable="d"
-        Title="Менеджер консультаций" Height="310" Width="500"
+        Title="Менеджер консультаций" Height="340" Width="500"
+        ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen">
     <Window.DataContext>
         <local:MainViewModel/>
@@ -40,7 +41,7 @@
                             <TextBlock Text="{Binding Path=Name}"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Path=Date}"/>
+                            <TextBlock Text="{Binding Path=Date.Date, StringFormat='dd.mm.yyyy, '}"/>
                             <TextBlock Text="{Binding Path=IntervalStartTime}"/>
                             <TextBlock Text=" - "/>
                             <TextBlock Text="{Binding Path=IntervalEndTime}"/>
@@ -65,9 +66,12 @@
         </StackPanel>
         
         <!-- Кнопки -->
-        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Content="Добавить запись" Command="{Binding AddCommand}" Width="110"/>
-            <Button Content="Удалить запись" Command="{Binding RemoveCommand}" Width="110"/>
+        <StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0">
+                <Button Content="Добавить запись" Command="{Binding AddCommand}" Width="110"/>
+                <Button Content="Удалить запись" Command="{Binding RemoveCommand}" Width="110"/>
+            </StackPanel>
+            <Button Content="Сохранить изменения" Command="{Binding SaveCommand}" Margin="5 0"/>
         </StackPanel>
     </Grid>
 </Window>
