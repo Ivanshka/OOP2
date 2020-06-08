@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Laba 12", "Laba 12\Laba 12.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Laba 13", "Laba 13\Laba 13.csproj", "{04CA5733-A5E5-46DA-AB5A-0F790276B33C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Laba 14 (MVVM)", "Laba 14 (MVVM)\Laba 14 (MVVM).csproj", "{BAEACC8F-49DD-487B-BB93-830FA57BFDE0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -131,6 +133,14 @@ Global
 		{04CA5733-A5E5-46DA-AB5A-0F790276B33C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{04CA5733-A5E5-46DA-AB5A-0F790276B33C}.Release|x86.ActiveCfg = Release|Any CPU
 		{04CA5733-A5E5-46DA-AB5A-0F790276B33C}.Release|x86.Build.0 = Release|Any CPU
+		{BAEACC8F-49DD-487B-BB93-830FA57BFDE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAEACC8F-49DD-487B-BB93-830FA57BFDE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAEACC8F-49DD-487B-BB93-830FA57BFDE0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BAEACC8F-49DD-487B-BB93-830FA57BFDE0}.Debug|x86.Build.0 = Debug|Any CPU
+		{BAEACC8F-49DD-487B-BB93-830FA57BFDE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAEACC8F-49DD-487B-BB93-830FA57BFDE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAEACC8F-49DD-487B-BB93-830FA57BFDE0}.Release|x86.ActiveCfg = Release|Any CPU
+		{BAEACC8F-49DD-487B-BB93-830FA57BFDE0}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
